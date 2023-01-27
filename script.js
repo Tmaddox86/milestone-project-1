@@ -3,9 +3,7 @@ let left = 0;
 let ballTop = 0;
 let ballLeft = 0;
 var game = document.getElementById("game"); left = 0;
-var counter = 0;
-let currentBlocks = [];
-
+let counter = 0;
 let block = document.createElement("div"); //creates new div
 let hole = document.createElement("div"); //creates new div
     
@@ -22,7 +20,7 @@ let hole = document.createElement("div"); //creates new div
         hole.getElementsByClassName("hole");
         game.appendChild(block); //adds lines to dom
         game.appendChild(hole); //adds gaps to the line
-        counter++;
+        
     
     };
     
@@ -88,6 +86,12 @@ let hole3 = document.createElement("div"); //creates new div
     
     createBlocks3()
 
+function stopBall(){
+    $(".ball").click(function(){
+        $("#block").stop();
+      });
+}
+
 //code works to move ball left and right but goes off page 68 to 86
 let moveBy = 5;
 window.addEventListener("load", function () {
@@ -108,28 +112,12 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-//makes ball drop within container start to fall slow then fast/stops in container line 88 to 97
 const delay = ms => new Promise(res => setTimeout(res, ms));
 setInterval(async function () {
-    await delay(9000);
+    
     if (parseInt(ball.style.top) < 550) {
         ball.style.top = parseInt(ball.style.top) + moveBy + 'px';
     } else {
         ball.style.top = '580px';
     }
-}, 1)
-
-var blocks = [ block, block1, block2, block3];
-function collisionDetection() {
-    b = blocks; 
-    for (let b = 0; b < blocks.length; b++);
-    if (ball.x > b.x && ball.x < b.x + blocksWidth && ball.y > b.y && ball.y < b.y + blocksHeight) {
-        dy = -dy;
-return stop();
-   // The x position of the ball is greater than the x position of the brick.
-    //The x position of the ball is less than the x position of the brick plus its width.
-    //The y position of the ball is greater than the y position of the brick.
-    //The y position of the ball is less than the y position of the brick plus its height.      
-}
-  collisionDetection()
-}
+}, 30)
