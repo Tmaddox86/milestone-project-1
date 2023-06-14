@@ -86,11 +86,6 @@ let hole3 = document.createElement("div"); //creates new div
     
     createBlocks3()
 
-function stopBall(){
-    $(".ball").click(function(){
-        $("#block").stop();
-      });
-}
 
 //code works to move ball left and right but goes off page 68 to 86
 let moveBy = 5;
@@ -121,3 +116,9 @@ setInterval(async function () {
         ball.style.top = '580px';
     }
 }, 30)
+
+function stopBlock() {
+    if ( ball.x > block.x || ball.y > block.y){
+       return stop( ball );
+    }
+}
